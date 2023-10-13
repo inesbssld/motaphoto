@@ -30,7 +30,7 @@
             <?php
     wp_nav_menu(array(
         'theme_location' => 'main-menu', // Emplacement du menu à afficher
-        'container' => 'ul', // Pour généré une ul et non une div comme container
+        'container' => 'ul', // Pour générer une ul et non une div comme container
        'menu_class' => 'main-menu', // Classe CSS pour la liste du menu
     ));
     ?>

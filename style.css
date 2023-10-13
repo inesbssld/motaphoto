@@ -10,3 +10,161 @@
  Tags:         photo, event, freelance
  Text Domain:  motaphoto
 */
+
+/***** reset de base ***/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  list-style-type: none;
+}
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*
+ Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/*
+ Avoid text overflows
+*/
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/****** FONTS *********/
+
+/* Space mono Regular 400 Bold 700 400 italic */
+@font-face {
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/Space_Mono/SpaceMono-Regular.woff2") format("woff2"),
+    url("assets/fonts/Space_Mono/SpaceMono-Regular.woff") format("woff"),
+    url("assets/fonts/Space_Mono/SpaceMono-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Space Mono";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/Space_Mono/SpaceMono-Italic.woff2") format("woff2"),
+    url("assets/fonts/Space_Mono/SpaceMono-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/Space_Mono/SpaceMono-Bold.woff2") format("woff2"),
+    url("assets/fonts/Space_Mono/SpaceMono-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Space Mono";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/Space_Mono/SpaceMono-BoldItalic.woff2") format("woff2"),
+    url("assets/fonts/Space_Mono/SpaceMono-BoldItalic.ttf") format("truetype");
+}
+
+/* poppins light 300 medium 500*/
+@font-face {
+  font-family: "Poppins Medium";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/Poppins/Poppins-Medium.woff2") format("woff2"),
+    url("assets/fonts/Poppins/Poppins-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins Light";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("assets/fonts/Poppins/Poppins-Light.woff2") format("woff2"),
+    url("assets/fonts/Poppins/Poppins-Light.ttf") format("truetype");
+}
+
+body {
+  font-family: "Space Mono", monospace;
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
+}
+
+/****** HEADER *********/
+
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  width: 100%;
+  max-width: 100%;
+}
+.custom-logo {
+  position: relative;
+  width: 216px;
+  height: 14px;
+  top: 31px;
+  left: 146px;
+}
+
+.main-menu {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  width: 305px;
+  top: 28px;
+  right: 214px;
+  height: 24px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+/***** FOOTER ******/
+
+footer {
+  height: 40px;
+  width: 100%;
+  max-width: 100%;
+  border-top: 1px solid black;
+  position: relative;
+  bottom: 0px;
+}
+
+.footer-menu {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+  font-size: 16px;
+  width: 623px;
+}
