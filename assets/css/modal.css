@@ -1,0 +1,117 @@
+/* Styles pour la modal */
+.modal {
+  display: none; /* Par défaut, la modal est cachée */
+  width: 597px; /* a changer en % */
+  height: 769px; /* Occupe toute la hauteur */
+  margin: 0 auto;
+  border: 5px solid black;
+  background-color: #ffffff;
+}
+.modal-header {
+  margin-top: 10px;
+  background-image: url("/wp-content/themes/motaphoto/img/contact_header.png");
+  height: 106px;
+}
+/* Styles pour le contenu de la modal */
+.modal-content {
+  position: relative;
+  margin: 0 auto;
+  width: 45%; /* Largeur de la modal */
+}
+
+/* Styles pour l'animation d'ouverture de la modal */
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+/**** FORMULAIRE *****/
+.wpcf7-form {
+  margin-top: 45px;
+  font-family: "Poppins", monospace;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #313144;
+  text-transform: uppercase;
+}
+
+.wpcf7-form p {
+  margin-top: 25px;
+}
+
+.wpcf7-text,
+.wpcf7-textarea,
+.wpcf7-submit {
+  width: 100%;
+  border: 1px solid #b8bbc2;
+  border-radius: 8px;
+}
+
+.wpcf7-text {
+  height: 40px;
+}
+
+.wpcf7-textarea {
+  height: 210px;
+}
+
+.wpcf7-submit {
+  height: 50px;
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: #d8d8d8;
+  line-height: 18px;
+  border-radius: 2px;
+}
+
+/**** FORMULAIRE *****/
+/*.wpcf7-form {
+  margin-top: 45px;
+  font-family: "Poppins", monospace;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #313144;
+  text-transform: uppercase;
+}
+
+.wpcf7-form p {
+  margin-top: 25px;
+}
+
+.wpcf7-text {
+  width: 100%;
+  border: 1px solid #b8bbc2;
+  border-radius: 8px;
+  height: 40px;
+}
+.wpcf7-textarea {
+  width: 100%;
+  border: 1px solid #b8bbc2;
+  border-radius: 8px;
+  height: 210px;
+}
+.wpcf7-submit {
+  width: 100%;
+  border: 1px solid #b8bbc2;
+  border-radius: 2px;
+  height: 50px;
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: #d8d8d8;
+  line-height: 18px;
+}
+*/

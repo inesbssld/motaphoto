@@ -1,3 +1,8 @@
+</main>
+
+<?php get_template_part('template-parts/modal/modal');?>
+
+
 <footer>
     <nav class="footer-nav">
         <?php
@@ -12,6 +17,9 @@
 </footer>
 
 <?php wp_footer(); ?>
+
+
+
 </body>
 
 </html>
