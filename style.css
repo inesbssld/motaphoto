@@ -116,12 +116,12 @@ h6 {
 
 body {
   font-family: "Space Mono", monospace;
-
   margin: auto;
 }
 .container {
   width: 1440px;
   max-width: 100%;
+  margin: 0 auto;
 }
 /****** HEADER *********/
 

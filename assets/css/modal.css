@@ -1,12 +1,39 @@
+/* Styles pour le conteneur de la modal */
+.modal-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 998; /* en arrière-plan par rapport à la modal */
+}
+
+/* Styles pour la couche semi-transparente en arrière-plan */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 /* Styles pour la modal */
 .modal {
-  display: none; /* Par défaut, la modal est cachée */
-  width: 597px; /* a changer en % */
-  height: 769px; /* Occupe toute la hauteur */
+  width: 597px;
+  height: 769px;
   margin: 0 auto;
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
   border: 5px solid black;
   background-color: #ffffff;
+  animation: animatetop 0.4s;
+  z-index: 999; /* devant la couche semi-transparente */
 }
+
 .modal-header {
   margin-top: 10px;
   background-image: url("/wp-content/themes/motaphoto/img/contact_header.png");
