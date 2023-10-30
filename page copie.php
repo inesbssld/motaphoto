@@ -21,7 +21,10 @@
 
 </section>
 
-<section class="gallery container">
+
+
+
+<section class="gallery">
     <div class="filter-options">
         <form method="get">
             <select name="category_filter">
@@ -39,7 +42,7 @@
             </select>
 
             <select name="sort_order">
-                <option value="">Date </option>
+                <option value="">Trier par </option>
                 <option value="date">Date des plus récentes au plus anciennes</option>
                 <option value="title">Date des plus anciennes aux plus récentes</option>
             </select>
@@ -49,14 +52,10 @@
     </div>
     <div class="photo-gallery">
         <?php
-
-$photo_ids = array();
-
     $args = array(
         'post_type' => 'photo',
         'posts_per_page' => 12,
-        'orderby' => 'date',
-		'order'=> 'DESC',
+        'orderby' => 'rand',
 		'paged'=> 1,
     );
 
@@ -66,15 +65,9 @@ $photo_ids = array();
         while ($query->have_posts()) :
             $query->the_post();
             get_template_part('template-parts/photo_block');
-
-			  // Récupérez l'ID de la photo et ajoutez-le au tableau
-        $photo_id = get_the_ID();
-        $photo_ids[] = $photo_id;
         endwhile;
     endif;
     wp_reset_postdata();
-
-
     ?>
     </div>
 

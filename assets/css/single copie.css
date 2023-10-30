@@ -1,12 +1,12 @@
-.full-screen-section {
-  /*height: calc(100vh - 90px);*/
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+/* Styles pour l'article */
+.post {
+  width: 80%;
+  display: flex; /* Utilisation de flexbox pour aligner les blocs */
+  flex-wrap: wrap; /* Les blocs passent à la ligne lorsque l'écran est étroit */
+  justify-content: center;
+  align-items: end;
+  justify-content: space-between; /* Espacement entre les blocs */
   margin: 0 auto;
-  margin-top: 20px;
-
-  column-gap: 20px; /* Répartit l'espace également entre les enfants */
 }
 
 /* Styles pour le bloc de détails de la photo (50% de largeur) */
@@ -24,10 +24,6 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   gap: 20px;
-  height: 70vh;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  flex-grow: 1;
 }
 .photo-details h1 {
   font-family: "Space Mono";
@@ -39,23 +35,16 @@
 }
 /* Styles pour le bloc de l'image de la photo (50% de largeur) */
 .photo-image {
-  flex-basis: 49%; /* largeur */
+  flex-basis: 49%; /* 50% de largeur */
   display: flex; /* Utilisation de flexbox pour centrer l'image */
   justify-content: center; /* Centrage horizontal de l'image */
   align-items: center; /* Centrage vertical de l'image */
-  flex-grow: 1;
-  overflow: hidden;
-  height: 70vh;
-  max-height: 70vh;
 }
 
 /* Styles pour l'image de la photo */
 .photo-image img {
-  width: 100%;
-  height: 100%;
-  /* Assurez-vous que l'image couvre toute la largeur du conteneur */
-  object-fit: cover; /* Cela garantira que votre image couvre la zone disponible sans étirer l'image */
-  object-position: center; /* Ajuste la position de l'image dans son conteneur */
+  max-width: 100%; /* Garantit que l'image ne dépasse pas la largeur du bloc */
+  height: auto; /* Maintient le rapport largeur/hauteur de l'image */
 }
 .additional-content {
   display: flex;
@@ -162,16 +151,43 @@
   /* autres styles au survol... */
 }
 
-/**** photos apparentees *****/
+/*
 
-.related-photo-section {
+
+.thumbnail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  margin: 0 auto;
-  margin-top: 50px;
+  position: relative;
+  height: 100px;
 }
+
+.thumbnail img {
+  width: 81px;
+  height: 81px;
+}
+
+.arrow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.prev-link,
+.next-link {
+  font-size: 24px;
+}
+
+.nav-link:hover .thumbnail img {
+  display: block;
+}
+*/
+/**** photos apparentees *****/
 .photo-appart {
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
 }
 
 .photo-appart h3 {

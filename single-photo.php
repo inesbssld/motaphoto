@@ -1,10 +1,9 @@
 <?php get_header(); ?>
+<div class="container">
+    <section class="full-screen-section post">
 
-
-<article class="post">
-
-    <div class="photo-details">
-        <?php
+        <div class="photo-details">
+            <?php
         $args = array(
             'post_type' => 'photo',
             'p' => get_the_ID(), // Obtient l'ID de la publication actuelle
@@ -13,85 +12,110 @@
         $photo_query = new WP_Query($args);
 
         if ($photo_query->have_posts()) :
-            while ($photo_query->have_posts()) : $photo_query->the_post();
+
+ while ($photo_query->have_posts()) : $photo_query->the_post();
+//essai nouvelle ligne
+
+
+        // Si c'est le premier post de la boucle, récupérez la miniature.
+        if ( $photo_query->current_post == 0 ) {
+            $first_thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
+        }
+
         ?>
 
-        <h1><?php the_title(); ?></h1>
-        <p>Référence: <?php echo get_field('reference'); ?></p>
-        <p>Catégorie: <?php the_terms(get_the_ID(), 'categories-photos'); ?></p>
-        <p>Format: <?php the_terms(get_the_ID(), 'format'); ?></p>
-        <p>Type: <?php echo get_field('type'); ?></p>
-        <p>Année: <?php echo get_the_date('Y'); ?></p>
-        <?php
+            <h1><?php the_title(); ?></h1>
+            <p>Référence: <?php echo get_field('reference'); ?></p>
+            <p>Catégorie: <?php the_terms(get_the_ID(), 'categories-photos'); ?></p>
+            <p>Format: <?php the_terms(get_the_ID(), 'format'); ?></p>
+            <p>Type: <?php echo get_field('type'); ?></p>
+            <p>Année: <?php echo get_the_date('Y'); ?></p>
+            <?php
             endwhile;
         endif;
         wp_reset_postdata();
         ?>
-    </div>
+        </div>
 
-    <div class="photo-image">
-        <?php the_post_thumbnail(); ?>
-    </div>
+        <div class="photo-image">
+            <?php the_post_thumbnail(); ?>
+        </div>
 
-    <div class="additional-content">
-        <?php
-        // Récupérez la photo actuelle
-        $current_photo = $post;
-
-        // Incluez le lien pour ouvrir la modal avec la référence pré-remplie
-        ?>
-
-
-        <p>Cette photo vous intéresse ?</p>
-        <a href="#myModal" id="reference-field" class="contact open-modal-link"
-            data-photo-ref="<?php echo esc_attr(get_field('reference', $current_photo)); ?>">Contactez-nous</a>
-
-
-        <div class="navigation">
-            <div class="thumbnail">
-                <?php
-        // Récupérez la photo précédente
-        $previous_photo = get_previous_post();
-        if ($previous_photo) :
-        ?>
-                <div class="prev-thumbnail">
-                    <img src="<?php echo esc_url(get_the_post_thumbnail_url($previous_photo, 'thumbnail')); ?>"
-                        alt="Photo précédente">
-                </div>
-                <?php endif; ?>
-
-                <?php
-        // Récupérez la photo suivante
-        $next_photo = get_next_post();
-        if ($next_photo) :
-        ?>
-                <div class="next-thumbnail">
-                    <img src="<?php echo esc_url(get_the_post_thumbnail_url($next_photo, 'thumbnail')); ?>"
-                        alt="Photo suivante">
-                </div>
-                <?php endif; ?>
+        <div class="additional-content">
+            <?php    $current_photo = $post;?>
+            <div class="text-contact-container">
+                <p>Cette photo vous intéresse ?</p>
+                <a href="#myModal" id="reference-field" class="contact open-modal-link"
+                    data-photo-ref="<?php echo esc_attr(get_field('reference', $current_photo)); ?>">Contact</a>
             </div>
-            <div class="arrow">
-                <a href="<?php echo get_permalink($previous_photo); ?>" class="nav-link prev-link">
-                    &larr;
-                </a>
-                <a href="<?php echo get_permalink($next_photo); ?>" class="nav-link next-link">
-                    &rarr;
-                </a>
+
+            <?php
+
+$previous_photo = get_previous_post();
+$next_photo = get_next_post();
+?>
+
+            <div class="navigation">
+                <!-- Conteneur pour les miniatures -->
+                <div id="hover-thumbnail-container">
+                    <?php
+    // Récupérer le post précédent
+    $previous_photo = get_previous_post();
+
+    // Si l'article précédent existe, afficher sa miniature
+    if ($previous_photo) :
+        $prev_thumbnail_url = get_the_post_thumbnail_url($previous_photo->ID, 'thumbnail');
+        $prev_post_url = get_permalink($previous_photo->ID); // Obtenez l'URL du post précédent
+        ?>
+                    <!-- La miniature est maintenant affichée dans le conteneur et est cliquable -->
+                    <a href="<?php echo esc_url($prev_post_url); ?>"
+                        title="<?php echo esc_attr(get_the_title($previous_photo->ID)); ?>">
+                        <img src="<?php echo esc_url($prev_thumbnail_url); ?>" class="thumbnail-img" alt="Miniature">
+                    </a>
+                    <?php endif; ?>
+                </div>
+
+                <!-- Conteneur pour les flèches -->
+                <div class="navigation-links">
+                    <!-- Lien précédent -->
+                    <?php if ($previous_photo) : ?>
+                    <a href="<?php echo get_permalink($previous_photo->ID); ?>" class="nav-link prev-link"
+                        data-thumbnail="<?php echo get_the_post_thumbnail_url($previous_photo->ID, 'thumbnail'); ?>"
+                        data-postlink="<?php echo get_permalink($previous_photo->ID); ?>">
+
+
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/arrow_left.png"
+                            alt="flèche précédente">
+                    </a>
+
+                    <?php endif; ?>
+
+                    <!-- Lien suivant -->
+                    <?php if ($next_photo) : ?>
+                    <a href="<?php echo get_permalink($next_photo->ID); ?>" class="nav-link next-link"
+                        data-thumbnail="<?php echo get_the_post_thumbnail_url($next_photo->ID, 'thumbnail'); ?>"
+                        data-postlink="<?php echo get_permalink($next_photo->ID); ?>">
+
+
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/arrow_right.png"
+                            alt="flèche suivante">
+                    </a>
+
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
 
 
+    </section>
 
+    <section class="related-photo-section">
+        <div class="photo-appart">
 
+            <h3>Vous aimerez aussi</h3>
 
-    </div>
-    <div class="photo-appart">
-
-        <h3>Vous aimerez aussi</h3>
-
-        <div class="photo-suggest">
-            <?php
+            <div class="photo-suggest photo-gallery">
+                <?php
     $categories = get_the_terms(get_the_ID(), 'categories-photos'); // Obtenez les catégories du post actuel
 
     if ($categories) {
@@ -115,36 +139,21 @@
         if ($query->have_posts()) :
             while ($query->have_posts()) :
                 $query->the_post();
-    ?>
-            <!-- essayer de remplacer par le template part-->
+                get_template_part('template-parts/photo_block');
 
-
-            <a href="<?php the_permalink(); ?>" class="photo-items">
-                <!-- Ajout du lien pour la vue de page unique -->
-                <?php if (has_post_thumbnail()) : ?>
-                <?php the_post_thumbnail(); ?>
-                <?php endif; ?>
-
-                <div class="photo-icons">
-                    <a href="#" class="fullscreen-icon"><i class="fas fa-expand"></i></a>
-                    <a href="<?php the_permalink(); ?>" class="single-page-icon"><i class="fas fa-eye"></i></a>
-                </div>
-            </a>
-
-            <?php
-    endwhile;
+            endwhile;
     endif;
     wp_reset_postdata();
 ?>
+            </div>
+
+            <button class="load-more" id="load-more-single">Toutes les photos</button>
         </div>
 
-        <button class="load-more" id="load-more">Charger plus</button>
-    </div>
 
 
 
-</article>
-
-
+    </section>
+</div>
 
 <?php get_footer(); ?>

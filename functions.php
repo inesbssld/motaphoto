@@ -30,13 +30,17 @@ function enqueue_custom_scripts() {
         '1.0', // Version de votre script
         true // Chargez le script dans le pied de page (true) ou l'en-tête (false)
     );
+     // Enqueue le fichier lightbox.js
+    wp_enqueue_script(
+        'lightbox',
+        get_template_directory_uri() . '/assets/js/lightbox.js', // Assurez-vous que ce chemin est correct
+        array('jquery'),
+        '1.0.0',
+        true
+    );
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
-
-
-
-
 
 
 // enregistrement des emplacements de menus
@@ -49,3 +53,121 @@ function register_my_menus() {
     );
 }
 add_action('after_setup_theme', 'register_my_menus');
+
+
+// bouton charger plus page accueil
+function load_more_photos() {
+
+    $args = array(
+        'post_type' => 'photo',
+        'posts_per_page' => 12,
+        'orderby' => 'date',
+        'order' => 'DESC',
+        'paged' => $_POST['paged'],
+        //'post__not_in'=>[]
+    );
+
+    $query = new WP_Query($args);
+
+  $response = '';
+    $max_pages = $query->max_num_pages;
+
+
+    if ($query->have_posts()) {
+ ob_start();
+        while ($query->have_posts()) :
+            $query->the_post();
+            $response .= get_template_part('template-parts/photo_block', 'photo');
+        endwhile;
+         $output = ob_get_contents();
+    ob_end_clean();
+    }
+    else {
+        $response='';
+    }
+
+ $result = [
+    'max' => $max_pages,
+    'html' => $output,
+  ];
+
+
+
+ echo json_encode($result);
+ exit;
+}
+
+add_action('wp_ajax_load_more_photos', 'load_more_photos');
+add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
+
+
+
+// bouton charger plus single-page
+function load_all_photos() {
+    $args = array(
+        'post_type' => 'photo',
+        'posts_per_page' => -1, // Charger toutes les photos
+        'orderby' => 'date',
+        'order' => 'DESC',
+    );
+
+    $query = new WP_Query($args);
+
+    $response = '';
+
+    if ($query->have_posts()) {
+        ob_start();
+        while ($query->have_posts()) :
+            $query->the_post();
+            $response .= get_template_part('template-parts/photo_block', 'photo');
+        endwhile;
+        $output = ob_get_contents();
+        ob_end_clean();
+    } else {
+        $response = '';
+    }
+// ajout test
+
+
+
+ // Vérifiez si toutes les photos sont chargées en comparant avec le nombre total de photos
+    $total_photos = wp_count_posts('photo')->publish;
+    $photos_loaded = $query->found_posts;
+    $all_loaded = ($photos_loaded >= $total_photos);
+
+
+//fin ajout test
+
+
+    $result = [
+        'html' => $output,
+         'allLoaded' => $all_loaded, // Indiquez si toutes les photos sont chargées test
+
+    ];
+
+    wp_reset_postdata();
+
+    echo json_encode($result);
+    exit;
+}
+
+add_action('wp_ajax_load_all_photos', 'load_all_photos');
+add_action('wp_ajax_nopriv_load_all_photos', 'load_all_photos');
+
+
+
+
+
+
+// ajout de la configuration ajax
+
+function add_ajax_library() {
+    wp_enqueue_script('load-more-photos', get_template_directory_uri() . '/assets/js/load-more.js', array('jquery'), '', true);
+
+    wp_localize_script('load-more-photos', 'ajax_object', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+
+    ));
+}
+
+add_action('wp_enqueue_scripts', 'add_ajax_library');

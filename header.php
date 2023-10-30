@@ -15,29 +15,36 @@
 
     <?php wp_body_open(); ?>
 
-    <header class="header">
-
-        <div class="logo">
-            <?php
+    <header>
+        <div class="container header">
+            <div class="logo">
+                <?php
     if (has_custom_logo()) {
         the_custom_logo();
     } else {
         echo '<a href="' . esc_url(home_url('/')) . '">' . get_bloginfo('name') . '</a>';
     }
     ?>
-        </div>
+            </div>
 
 
-        <!-- on ajoute notre menu dans le header-->
-        <nav class="header-nav">
-            <?php
+            <!-- on ajoute notre menu dans le header-->
+            <nav class="header-nav">
+                <?php
     wp_nav_menu(array(
         'theme_location' => 'main-menu', // Emplacement du menu à afficher
         'container' => 'ul', // Pour générer une ul et non une div comme container
        'menu_class' => 'main-menu', // Classe CSS pour la liste du menu
     ));
     ?>
-        </nav>
+
+                <div class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars" id="menu-icon"></i>
+                </div>
+            </nav>
+
+
+        </div>
     </header>
 
-    <main class="container">
+    <main>
