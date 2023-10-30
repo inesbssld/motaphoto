@@ -159,7 +159,7 @@ add_action('wp_ajax_nopriv_load_all_photos', 'load_all_photos');
 
 
 
-// ajout de la configuration ajax
+// ajout de la configuration ajax pour les boutons charger plus
 
 function add_ajax_library() {
     wp_enqueue_script('load-more-photos', get_template_directory_uri() . '/assets/js/load-more.js', array('jquery'), '', true);
@@ -171,3 +171,99 @@ function add_ajax_library() {
 }
 
 add_action('wp_enqueue_scripts', 'add_ajax_library');
+
+
+
+// Enqueue JS et passer des paramètres à votre script JS
+function custom_enqueue_scripts() {
+    wp_enqueue_script('ajax-filter', get_template_directory_uri() . '/assets/js/filter.js', array('jquery'), null, true);
+    wp_localize_script('ajax-filter', 'afp_vars', array(
+        'afp_nonce' => wp_create_nonce('afp_nonce'), // Crée une nonce, qui est ensuite associée à la requête
+        'afp_ajax_url' => admin_url('admin-ajax.php')
+    ));
+}
+add_action('wp_enqueue_scripts', 'custom_enqueue_scripts', 10);
+
+
+
+
+//fonction pour les filtres
+function filter_photos() {
+
+    $args = array(
+        'post_type' => 'photo',
+        'posts_per_page' => 12
+    );
+
+
+
+
+    // Filtre par catégorie
+    if (isset($_GET['category_filter']) && $_GET['category_filter']) {
+
+//debug
+ error_log("Catégorie sélectionnée: " . $_GET['category_filter']);
+//debug
+
+
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'categories-photos',
+                'field'    => 'slug',
+                'terms'    => sanitize_text_field($_GET['category_filter']),
+            ),
+        );
+
+    }
+
+    // Filtre par format (je suppose que c'est une autre taxonomie)
+    if (isset($_GET['format_filter']) && $_GET['format_filter']) {
+        $args['tax_query'][] = array(
+            'taxonomy' => 'format', // Adaptez ceci selon le nom réel de votre taxonomie pour le format
+            'field'    => 'slug',
+            'terms'    => sanitize_text_field($_GET['format_filter']),
+        );
+    }
+
+    // Tri
+  // Tri
+// Tri
+if (isset($_GET['sort_order'])) {
+    $args['orderby'] = 'date';  // Tri toujours par date
+
+    if ($_GET['sort_order'] == 'date-ASC') {
+        $args['order'] = 'ASC';
+    } else if ($_GET['sort_order'] == 'date-DESC') {
+        $args['order'] = 'DESC';
+    }
+}
+
+
+
+
+
+    $query = new WP_Query($args);
+
+
+
+
+
+    $response = '';
+
+    if ($query->have_posts()) {
+        ob_start();
+        while ($query->have_posts()) :
+            $query->the_post();
+            get_template_part('template-parts/photo_block', 'photo');
+        endwhile;
+        $response = ob_get_contents();
+        ob_end_clean();
+    }
+
+    echo json_encode(array('html' => $response));
+    exit;
+}
+
+
+add_action('wp_ajax_filter_photos', 'filter_photos'); // Si utilisateur est connecté
+add_action('wp_ajax_nopriv_filter_photos', 'filter_photos'); // Si utilisateur n'est pas connecté

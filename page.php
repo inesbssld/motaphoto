@@ -23,30 +23,40 @@
 
 <section class="gallery container">
     <div class="filter-options">
-        <form method="get">
+        <form id="filter-form" method="GET">
+
+            <!-- Pour les catégories -->
             <select name="category_filter">
                 <option value="">Catégories</option>
-                <option value="reception">Réception</option>
-                <option value="mariage">Télévision</option>
-                <option value="concert">Concert</option>
-                <option value="television">Mariage</option>
+                <?php
+            $categories = get_terms('categories-photos');
+            foreach ($categories as $category) {
+                echo '<option value="' . $category->slug . '">' . $category->name . '</option>';
+            }
+            ?>
             </select>
 
+            <!-- Pour les formats -->
             <select name="format_filter">
                 <option value="">Formats</option>
-                <option value="paysage">Paysage</option>
-                <option value="portrait">Portrait</option>
+                <?php
+            $formats = get_terms('format');
+            foreach ($formats as $format) {
+                echo '<option value="' . $format->slug . '">' . $format->name . '</option>';
+            }
+            ?>
             </select>
 
+            <!-- Pour l'ordre -->
             <select name="sort_order">
                 <option value="">Date </option>
-                <option value="date">Date des plus récentes au plus anciennes</option>
-                <option value="title">Date des plus anciennes aux plus récentes</option>
+                <option value="date-DESC">Date des plus récentes au plus anciennes</option>
+                <option value="date-ASC">Date des plus anciennes aux plus récentes</option>
             </select>
 
-            <!--<input type="submit" value="Filtrer">-->
         </form>
     </div>
+
     <div class="photo-gallery">
         <?php
 
