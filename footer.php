@@ -20,9 +20,9 @@
 
 
 <div id="lightbox" style="display = none">
-    <button class="lightbox__close" id="close-lightbox">Fermer</button>
-    <button class="lightbox__prev" id="prev-image">Précédent</button>
-    <button class="lightbox__next" id="next-image">Suivant </button>
+    <button class="lightbox__close" id="close-lightbox">X</button>
+    <button class="lightbox__prev" id="prev-image">Précédente</button>
+    <button class="lightbox__next" id="next-image">Suivante </button>
 
     <div class="lightbox-content">
         <img id="lightbox-image" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>">

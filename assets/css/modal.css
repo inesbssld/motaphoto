@@ -7,6 +7,11 @@
   width: 100%;
   height: 100%;
   z-index: 998; /* en arrière-plan par rapport à la modal */
+
+  /* style spéciale poiur l'animation*/
+  opacity: 0;
+  animation-duration: 300ms; /* durée de l'animation */
+  animation-fill-mode: forwards; /* ajoutez cette ligne pour que les animations gardent leur dernier état */
 }
 
 /* Styles pour la couche semi-transparente en arrière-plan */
@@ -30,7 +35,7 @@
   transform: translateX(-50%);
   border: 5px solid black;
   background-color: #ffffff;
-  animation: animatetop 0.4s;
+
   z-index: 999; /* devant la couche semi-transparente */
 }
 
@@ -47,13 +52,19 @@
 }
 
 /* Styles pour l'animation d'ouverture de la modal */
-@keyframes animatetop {
-  from {
-    top: -300px;
+
+/* Classe ajoutée via JavaScript pour montrer la modal */
+.modal-container.show {
+  display: block;
+
+  animation: fadeInModal 300ms forwards;
+}
+
+@keyframes fadeInModal {
+  0% {
     opacity: 0;
   }
-  to {
-    top: 0;
+  100% {
     opacity: 1;
   }
 }
@@ -99,6 +110,12 @@
   background-color: #d8d8d8;
   line-height: 18px;
   border-radius: 2px;
+  transition: transform 500ms ease-out;
+}
+.wpcf7-submit:hover {
+  transform: scale(1.05);
+  color: white;
+  background-color: black;
 }
 
 /**** FORMULAIRE *****/

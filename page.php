@@ -50,8 +50,8 @@
             <!-- Pour l'ordre -->
             <select name="sort_order">
                 <option value="">Date </option>
-                <option value="date-DESC">Date des plus récentes au plus anciennes</option>
-                <option value="date-ASC">Date des plus anciennes aux plus récentes</option>
+                <option value="date-DESC">Plus récentes aux plus anciennes</option>
+                <option value="date-ASC">Plus anciennes aux plus récentes</option>
             </select>
 
         </form>
