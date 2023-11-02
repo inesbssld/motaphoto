@@ -1,3 +1,8 @@
+/* Quand la barre d'administration est présente, ajuster la position top de la modal */
+body.admin-bar .modal-container {
+  top: 32px;
+}
+
 /* Styles pour le conteneur de la modal */
 .modal-container {
   display: none;
@@ -27,10 +32,10 @@
 /* Styles pour la modal */
 .modal {
   width: 597px;
-  height: 769px;
+  height: 94vh;
   margin: 0 auto;
   position: absolute;
-  top: 32px;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
   border: 5px solid black;
@@ -42,13 +47,14 @@
 .modal-header {
   margin-top: 10px;
   background-image: url("/wp-content/themes/motaphoto/img/contact_header.png");
+  background-size: cover;
   height: 106px;
 }
 /* Styles pour le contenu de la modal */
 .modal-content {
   position: relative;
   margin: 0 auto;
-  width: 45%; /* Largeur de la modal */
+  width: 45%;
 }
 
 /* Styles pour l'animation d'ouverture de la modal */
@@ -99,7 +105,7 @@
 }
 
 .wpcf7-textarea {
-  height: 210px;
+  height: auto;
 }
 
 .wpcf7-submit {
@@ -117,45 +123,56 @@
   color: white;
   background-color: black;
 }
-
-/**** FORMULAIRE *****/
-/*.wpcf7-form {
-  margin-top: 45px;
-  font-family: "Poppins", monospace;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 18px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: #313144;
-  text-transform: uppercase;
+.wpcf7-response-output {
+  margin-top: -10px !important;
 }
 
-.wpcf7-form p {
-  margin-top: 25px;
+/************************************************   Media queries   ***************************************************************/
+/* Pour les écrans de taille inférieure à 782px, WordPress ajuste la hauteur de la barre d'administration à 46px */
+@media screen and (max-width: 782px) {
+  body.admin-bar .modal-container {
+    top: 46px;
+  }
 }
 
-.wpcf7-text {
-  width: 100%;
-  border: 1px solid #b8bbc2;
-  border-radius: 8px;
-  height: 40px;
+@media (min-width: 375px) and (max-width: 500px) {
+  .modal {
+    width: 60vw;
+  }
 }
-.wpcf7-textarea {
-  width: 100%;
-  border: 1px solid #b8bbc2;
-  border-radius: 8px;
-  height: 210px;
+
+@media (max-width: 768px) {
+  .modal {
+    width: 90vw;
+    height: 90vh;
+  }
+  .modal-content {
+    width: 85%;
+  }
+  .modal-header {
+    margin-top: 10px;
+    background-image: url(/wp-content/themes/motaphoto/img/contact_header.png);
+    background-size: cover;
+    height: 13%;
+    margin-bottom: -25px;
+  }
+  .wpcf7-textarea {
+    height: auto;
+  }
+  textarea.wpcf7-textarea.wpcf7-not-valid {
+    height: 137px;
+  }
 }
-.wpcf7-submit {
-  width: 100%;
-  border: 1px solid #b8bbc2;
-  border-radius: 2px;
-  height: 50px;
-  font-family: "Space Mono", monospace;
-  font-size: 12px;
-  font-weight: 400;
-  background-color: #d8d8d8;
-  line-height: 18px;
+@media (min-width: 768px) and (max-width: 1024px) {
+  .modal {
+    width: 60vw;
+  }
+  .modal-header {
+    height: 9%;
+  }
 }
-*/
+@media (min-width: 500px) and (max-width: 768px) {
+  .modal {
+    width: 60vw;
+  }
+}

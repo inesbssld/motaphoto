@@ -87,17 +87,36 @@ document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menu-toggle");
   const menuIcon = document.getElementById("menu-icon");
   const mainMenu = document.querySelector(".main-menu");
+  const menuLinks = mainMenu.querySelectorAll("a"); // sélectionner tous les liens dans le menu
+
+  const closeMenu = () => {
+    mainMenu.classList.add("closing");
+    mainMenu.addEventListener(
+      "animationend",
+      function () {
+        mainMenu.classList.remove("mobile-menu");
+        mainMenu.classList.remove("closing");
+      },
+      { once: true }
+    );
+
+    menuIcon.classList.remove("fa-times");
+    menuIcon.classList.add("fa-bars");
+  };
 
   menuToggle.addEventListener("click", function () {
     if (mainMenu.classList.contains("mobile-menu")) {
-      mainMenu.classList.remove("mobile-menu");
-      menuIcon.classList.remove("fa-times");
-      menuIcon.classList.add("fa-bars");
+      closeMenu();
     } else {
       mainMenu.classList.add("mobile-menu");
       menuIcon.classList.remove("fa-bars");
       menuIcon.classList.add("fa-times");
     }
+  });
+
+  // Ajout d'un écouteur d'événement pour chaque lien
+  menuLinks.forEach((link) => {
+    link.addEventListener("click", closeMenu);
   });
 
   // Écouteur d'événement pour le redimensionnement de la fenêtre
@@ -110,8 +129,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// test select stylsation
+// Filtres
 
+//essai nouveau code
+// code qui fonctionne
 jQuery(document).ready(function ($) {
   $("select").each(function () {
     var $this = $(this),
@@ -121,7 +142,9 @@ jQuery(document).ready(function ($) {
     $this.wrap('<div class="custom-dropdown"></div>');
     $this.after(
       '<div class="dropdown-toggle">' +
+        '<span class="selected-text">' +
         $this.children("option").eq(0).text() +
+        "</span>" + // fermez la balise ici
         '<span class="arrow"><img src="wp-content/themes/motaphoto/img/arrow_select_icon.png"></span></div>'
     );
 
@@ -142,17 +165,21 @@ jQuery(document).ready(function ($) {
 
     $styledSelect.on("click", function (e) {
       e.stopPropagation();
+      var $arrow = $(this).find(".arrow");
       $("div.dropdown-toggle.active")
         .not(this)
         .each(function () {
           $(this).removeClass("active").next("ul.dropdown-menu").hide();
+          $(this).find(".arrow").removeClass("arrow-reverse");
         });
       $(this).toggleClass("active").next("ul.dropdown-menu").toggle();
+      $arrow.toggleClass("arrow-reverse");
     });
 
     $listItems.on("click", function (e) {
       e.stopPropagation();
-      $styledSelect.text($(this).text()).removeClass("active");
+      $styledSelect.find(".selected-text").text($(this).text());
+      $styledSelect.removeClass("active");
       $this.val($(this).attr("rel"));
       $list.hide();
       // Reflétant les changements dans le select d'origine

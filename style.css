@@ -176,6 +176,11 @@ header {
   display: flex;
 }
 /* Styles pour le menu mobile */
+
+body.admin-bar .mobile-menu {
+  top: 118px; /* déplace le menu de 46px vers le bas sur les écrans mobiles */
+}
+
 .mobile-menu {
   display: none;
   flex-direction: column;
@@ -188,7 +193,7 @@ header {
   top: 72px;
   left: 0;
   background-color: #e00000;
-  z-index: 1000;
+  z-index: 100;
   align-items: center;
   justify-content: center;
   animation-name: moveInRight;
@@ -207,6 +212,44 @@ header {
 
 #menu-icon {
   font-size: 27px;
+}
+/* Style pour les liens lorsqu'ils sont en état actif (clic) */
+.mobile-menu li a:active {
+  animation-name: linkMoveInRight;
+  animation-timing-function: ease-out;
+  animation-duration: 300ms;
+}
+
+/* Application de l'animation de fermeture lorsque la classe 'mobile-menu-closing' est présente */
+.mobile-menu-closing {
+  animation-name: moveOutRight;
+  animation-timing-function: ease-out;
+  animation-duration: 300ms;
+}
+
+/*keyframes fermeture du menu*/
+
+@keyframes moveOutRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Keyframes pour l'animation "Move in Right" des liens */
+@keyframes linkMoveInRight {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 /* animation ouverture menu */
@@ -251,10 +294,171 @@ header {
   -webkit-text-fill-color: transparent;
 }
 
-/**** section gallery *****/
+/************************************** section gallery ***********************************************************/
+
+/**********filtres ********/
+
 .filter-options {
   display: flex;
 }
+
+select {
+  /*width: 260px;
+  height: 42px;
+  border: 1.3px solid #b8bbc2;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  font-family: "Poppins";
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: #313144;
+  letter-spacing: 1px;
+  padding-left: 15px;*/
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  border: 1px solid #ccc;
+  padding-right: 20px; /* espace pour l'icône de flèche */
+  background-image: url("img/arrow_select_icon.png");
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+select:nth-child(1) {
+  margin-right: 25px;
+}
+select[name="sort_order"] {
+  margin-left: auto;
+}
+
+#filter-form {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.custom-dropdown {
+  position: relative;
+  width: 260px;
+  border-bottom: none;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom: none;
+}
+
+.dropdown-toggle,
+.dropdown-menu {
+  width: 100%;
+  text-align: left;
+  /* background-color: #e5e5e5; */
+  border-bottom: none;
+  padding: 13px 15px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  letter-spacing: 1px;
+  font-family: "Poppins'";
+  text-transform: uppercase;
+  border: 1.3px solid #b8bbc2;
+  color: #313144;
+  font-weight: 500;
+  margin-bottom: 40px;
+  height: 42px;
+}
+
+.dropdown-menu {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  margin-top: -1.3px;
+}
+
+.arrow {
+  float: right;
+  height: 6px;
+  width: 11px;
+  padding-top: 2px;
+}
+
+.arrow-reverse img {
+  transform: rotate(180deg);
+}
+
+.select-hidden {
+  display: none;
+}
+.dropdown-menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  z-index: 999;
+  border-radius: 8px;
+}
+
+.dropdown-menu {
+  border-top: none; /* Élimine la double bordure entre les deux blocs */
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  margin-top: -1.7px; /* Ajustement pour chevaucher la bordure et éviter un espace */
+}
+
+.dropdown-menu li {
+  padding: 10px 15px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.dropdown-menu li:first-child {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Lorsqu'un élément est sélectionné */
+.custom-dropdown .dropdown-toggle {
+  background-color: white;
+  /* Vous pouvez ajuster la couleur du texte si nécessaire */
+}
+.dropdown-toggle.active {
+  background-color: red;
+}
+/* Lorsqu'un élément est survolé */
+.custom-dropdown .dropdown-menu li:hover {
+  background-color: #ffd6d6;
+}
+
+/* Lorsqu'un élément est cliqué */
+.custom-dropdown .dropdown-menu li:active {
+  background-color: #fe5858;
+}
+
+.custom-dropdown:nth-child(1) {
+  margin-right: auto;
+}
+.custom-dropdown:nth-child(2) {
+  margin-right: 25%;
+}
+.custom-dropdown:nth-child(3) {
+  margin-left: auto;
+}
+
+/********** galerie ********/
+
 .gallery {
   padding-top: 46px;
   margin: 0 auto;
@@ -287,7 +491,7 @@ header {
   }
 }
 
-/**** icones photos galerie *****/
+/****** icones photo galerie ******/
 
 .photo-icons {
   position: absolute;
@@ -357,136 +561,7 @@ a.fullscreen-icon {
   margin: 0 auto;
 }
 
-/**** champ de tri *****/
-
-select {
-  /*width: 260px;
-  height: 42px;
-  border: 1.3px solid #b8bbc2;
-  border-radius: 8px;
-  margin-bottom: 40px;
-  font-family: "Poppins";
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 18px;
-  text-transform: uppercase;
-  color: #313144;
-  letter-spacing: 1px;
-  padding-left: 15px;*/
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: transparent;
-  border: 1px solid #ccc;
-  padding-right: 20px; /* espace pour l'icône de flèche */
-  background-image: url("img/arrow_select_icon.png");
-  background-position: right center;
-  background-repeat: no-repeat;
-}
-select:nth-child(1) {
-  margin-right: 25px;
-}
-select:nth-child(3) {
-  float: right;
-}
-
-#filter-form {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.custom-dropdown {
-  position: relative;
-  width: 260px;
-  border-bottom: none;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  border-bottom: none;
-}
-
-.dropdown-toggle,
-.dropdown-menu {
-  width: 100%;
-  text-align: left;
-  /* background-color: #e5e5e5; */
-  border-bottom: none;
-  padding: 13px 15px;
-  font-size: 12px;
-  cursor: pointer;
-  border-radius: 8px;
-  letter-spacing: 1px;
-  font-family: "Poppins'";
-  text-transform: uppercase;
-  border: 1.3px solid #b8bbc2;
-  color: #313144;
-  font-weight: 500;
-  margin-bottom: 40px;
-  height: 42px;
-}
-
-.dropdown-menu {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  margin-top: -1.3px;
-}
-
-.arrow {
-  float: right;
-  height: 6px;
-  width: 11px;
-  padding-top: 2px;
-}
-.select-hidden {
-  display: none;
-}
-.dropdown-menu {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  /*box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);*/
-  background-color: #ffffff;
-  z-index: 999;
-  border-radius: 8px;
-}
-
-.dropdown-menu {
-  border-top: none; /* Élimine la double bordure entre les deux blocs */
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  margin-top: -1.7px; /* Ajustement pour chevaucher la bordure et éviter un espace */
-}
-
-.dropdown-menu li {
-  padding: 10px 15px;
-  cursor: pointer;
-  background-color: white;
-}
-
-.dropdown-menu li:first-child {
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-.dropdown-menu li:last-child {
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
-
-.dropdown-menu li:hover {
-  background-color: #e00000;
-}
-
-/************************************** fin test select **************************************************/
+/********* bouton charger plus ********/
 
 .load-more {
   display: block;
@@ -535,7 +610,7 @@ footer {
   height: 40px;
 }
 
-/********************************* lightbox **************************/
+/********************************************** lightbox ********************************************************/
 #lightbox {
   position: fixed;
   top: 0;
@@ -607,6 +682,24 @@ footer {
   color: white;
 }
 
+.lightbox__next:hover,
+.lightbox__prev:hover {
+  font-weight: 700;
+  animation-name: dissolve;
+  animation-timing-function: ease-out;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes dissolve {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .lightbox__next {
   display: flex;
   align-items: center; /* Pour centrer verticalement le texte et la flèche */
@@ -670,7 +763,7 @@ footer {
 }
 
 .lightbox-infos {
-  width: 100vw;
+  width: 50vw;
   display: flex;
   justify-content: space-between;
   margin-top: 5px;
@@ -728,6 +821,23 @@ footer {
     display: none;
   }
 
+  #filter-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .custom-dropdown:nth-child(1) {
+    margin: 0 auto;
+  }
+  .custom-dropdown:nth-child(2) {
+    margin: 0 auto;
+  }
+  .custom-dropdown:nth-child(3) {
+    margin: 0 auto;
+  }
+
   .photo-gallery {
     flex-direction: column;
   }
@@ -747,8 +857,56 @@ footer {
     justify-content: space-around;
     padding: 40px 0;
   }
+
+  .lightbox__prev {
+    left: 16%;
+    top: 83%;
+  }
+  .lightbox__next {
+    right: 11%;
+    top: 83%;
+  }
+  .lightbox-infos {
+    width: 50vw;
+  }
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Vos styles pour ce breakpoint spécifique ici */
+  .header {
+    justify-content: space-between;
+  }
+
+  .photo-hero h2 {
+    font-size: 4rem;
+  }
+
+  #filter-form {
+    flex-direction: row;
+  }
+
+  .photo-gallery {
+    flex-direction: row;
+  }
+
+  /* single css*/
+  .photo-details {
+    flex-basis: 48%;
+  }
+  .photo-image {
+    flex-basis: 48%;
+  }
+  .photo-items {
+    width: 49%;
+  }
+  .text-contact-container {
+    width: 80%;
+  }
+  .navigation {
+    width: 13%;
+  }
+  /* fin single css*/
+}
 @media (min-width: 768px) and (max-width: 1440px) {
   .container {
     width: 90%;

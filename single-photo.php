@@ -24,7 +24,7 @@
 
         ?>
 
-            <h1><?php the_title(); ?></h1>
+            <h2><?php the_title(); ?></h2>
             <p>Référence: <?php echo get_field('reference'); ?></p>
             <p>Catégorie: <?php the_terms(get_the_ID(), 'categories-photos'); ?></p>
             <p>Format: <?php the_terms(get_the_ID(), 'format'); ?></p>

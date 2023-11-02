@@ -19,13 +19,13 @@ add_action('wp_enqueue_scripts', 'enqueue_motaphoto_styles');
 
 
 function enqueue_custom_scripts() {
-    // Enregistrez le script jQuery (si ce n'est pas déjà fait par WordPress)
+    // Enregistre le script jQuery
     wp_enqueue_script('jquery');
 
     // Enregistrez votre script personnalisé
     wp_enqueue_script(
         'custom-script',
-        get_template_directory_uri() . '/assets/js/script.js', // Chemin vers votre script
+        get_template_directory_uri() . '/assets/js/script.js',
         array('jquery'), // Dépendance à jQuery
         '1.0', // Version de votre script
         true // Chargez le script dans le pied de page (true) ou l'en-tête (false)

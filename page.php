@@ -27,7 +27,9 @@
 
             <!-- Pour les catégories -->
             <select name="category_filter">
+
                 <option value="">Catégories</option>
+
                 <?php
             $categories = get_terms('categories-photos');
             foreach ($categories as $category) {
@@ -50,8 +52,8 @@
             <!-- Pour l'ordre -->
             <select name="sort_order">
                 <option value="">Date </option>
-                <option value="date-DESC">Plus récentes aux plus anciennes</option>
-                <option value="date-ASC">Plus anciennes aux plus récentes</option>
+                <option value="date-DESC">Plus récent au plus ancien</option>
+                <option value="date-ASC">Plus ancien au plus récent</option>
             </select>
 
         </form>
