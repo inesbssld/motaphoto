@@ -3,7 +3,7 @@
 <?php get_template_part('template-parts/modal/modal');?>
 <!--
 <?php get_template_part('template-parts/lightbox');?>-->
-<footer>
+<footer class="footer">
     <nav class="footer-nav">
         <?php
     wp_nav_menu(array(
@@ -13,7 +13,7 @@
     ));
     ?>
     </nav>
-
+    <span>Tous droits réservés</span>
 </footer>
 
 <?php wp_footer(); ?>

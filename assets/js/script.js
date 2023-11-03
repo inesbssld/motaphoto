@@ -1,3 +1,4 @@
+//modal
 jQuery(document).ready(function ($) {
   var modalContainer = $("#modal-container");
 

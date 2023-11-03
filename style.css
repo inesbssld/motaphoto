@@ -200,6 +200,7 @@ body.admin-bar .mobile-menu {
   animation-timing-function: ease-out;
   animation-duration: 300ms;
   color: white;
+  padding-bottom: 50px;
 }
 .mobile-menu li {
   padding-bottom: 20px;
@@ -595,6 +596,13 @@ footer {
   position: relative;
   bottom: 0px;
   margin-top: 40px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  text-transform: uppercase;
+  align-items: center;
 }
 .footer-nav {
   width: 100%;

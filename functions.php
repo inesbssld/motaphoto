@@ -25,10 +25,7 @@ function enqueue_custom_scripts() {
     // Enregistrez votre script personnalisé
     wp_enqueue_script(
         'custom-script',
-        get_template_directory_uri() . '/assets/js/script.js',
-        array('jquery'), // Dépendance à jQuery
-        '1.0', // Version de votre script
-        true // Chargez le script dans le pied de page (true) ou l'en-tête (false)
+        get_template_directory_uri() . '/assets/js/script.js',array('jquery'), '1.0', true // Chargez le script dans le pied de page (true) ou l'en-tête (false)
     );
      // Enqueue le fichier lightbox.js
     wp_enqueue_script(
@@ -64,7 +61,6 @@ function load_more_photos() {
         'orderby' => 'date',
         'order' => 'DESC',
         'paged' => $_POST['paged'],
-        //'post__not_in'=>[]
     );
 
     $query = new WP_Query($args);
@@ -90,8 +86,6 @@ function load_more_photos() {
     'max' => $max_pages,
     'html' => $output,
   ];
-
-
 
  echo json_encode($result);
  exit;
@@ -195,16 +189,8 @@ function filter_photos() {
         'posts_per_page' => 12
     );
 
-
-
-
     // Filtre par catégorie
     if (isset($_GET['category_filter']) && $_GET['category_filter']) {
-
-//debug
- error_log("Catégorie sélectionnée: " . $_GET['category_filter']);
-//debug
-
 
         $args['tax_query'] = array(
             array(
@@ -216,17 +202,15 @@ function filter_photos() {
 
     }
 
-    // Filtre par format (je suppose que c'est une autre taxonomie)
+    // Filtre par format
     if (isset($_GET['format_filter']) && $_GET['format_filter']) {
         $args['tax_query'][] = array(
-            'taxonomy' => 'format', // Adaptez ceci selon le nom réel de votre taxonomie pour le format
+            'taxonomy' => 'format',
             'field'    => 'slug',
             'terms'    => sanitize_text_field($_GET['format_filter']),
         );
     }
 
-    // Tri
-  // Tri
 // Tri
 if (isset($_GET['sort_order'])) {
     $args['orderby'] = 'date';  // Tri toujours par date
@@ -238,15 +222,7 @@ if (isset($_GET['sort_order'])) {
     }
 }
 
-
-
-
-
     $query = new WP_Query($args);
-
-
-
-
 
     $response = '';
 

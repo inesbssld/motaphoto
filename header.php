@@ -27,7 +27,6 @@
     ?>
             </div>
 
-
             <!-- on ajoute notre menu dans le header-->
             <nav class="header-nav">
                 <?php

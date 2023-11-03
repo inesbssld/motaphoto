@@ -49,7 +49,7 @@
             ?>
             </select>
 
-            <!-- Pour l'ordre -->
+            <!-- Pour la date -->
             <select name="sort_order">
                 <option value="">Date </option>
                 <option value="date-DESC">Plus récent au plus ancien</option>
@@ -79,7 +79,7 @@ $photo_ids = array();
             $query->the_post();
             get_template_part('template-parts/photo_block');
 
-			  // Récupérez l'ID de la photo et ajoutez-le au tableau
+			  // Récupére l'ID de la photo et ajoutez-le au tableau
         $photo_id = get_the_ID();
         $photo_ids[] = $photo_id;
         endwhile;
