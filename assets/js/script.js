@@ -20,34 +20,6 @@ jQuery(document).ready(function ($) {
   });
 });
 
-/*
-
-
-// gestion modal contact bis
-jQuery(document).ready(function ($) {
-  var modalContainer = $("#modal-container");
-
-  $(".open-modal-link").click(function (e) {
-    e.preventDefault();
-    modalContainer.css("display", "block");
-
-    // Récupérez la référence de la photo depuis l'attribut "data-photo-ref"
-    var photoReference = $(this).data("photo-ref");
-
-    // Pré-remplissez le champ "Réf-photo" avec la référence
-    $('[name="your-subject"]').val(photoReference);
-  });
-
-  modalContainer.find(".close").click(function () {
-    modalContainer.css("display", "none");
-  });
-
-  modalContainer.find("#overlay").click(function () {
-    modalContainer.css("display", "none");
-  });
-});
-*/
-
 //gestion thumbnail
 
 jQuery(document).ready(function ($) {
@@ -75,11 +47,6 @@ jQuery(document).ready(function ($) {
     // Définissez la miniature cliquable et affichez-la
     $("#hover-thumbnail-container").html(clickableThumbnail).show();
   });
-
-  // Cachez la miniature lorsque le curseur quitte le lien
-  //$(".nav-link").on("mouseleave", function () {
-  // $("#hover-thumbnail-container").hide();
-  //});
 });
 
 // menu responsive
@@ -132,8 +99,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Filtres
 
-//essai nouveau code
-// code qui fonctionne
 jQuery(document).ready(function ($) {
   $("select").each(function () {
     var $this = $(this),

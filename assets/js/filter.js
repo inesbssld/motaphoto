@@ -19,8 +19,6 @@ jQuery(document).ready(function ($) {
       },
 
       success: function (response) {
-        console.log(response);
-
         // Pour voir toute la réponse
         $(".photo-gallery").empty().html(response.html);
 

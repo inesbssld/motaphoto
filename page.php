@@ -1,97 +1,35 @@
-<?php get_header(); ?>
+<?php get_header()?>
 
-<section class="hero">
-    <div class="photo-hero">
+
+<div id="primary" class="content-area">
+    <main id="main" class="site-main">
+
         <?php
-                $args = array(
-                    'post_type' => 'photo',
-                    'posts_per_page' => 1,
-                    'orderby' => 'rand',
-                );
+        while (have_posts()) : the_post(); // La boucle WordPress
 
-                $loop = new WP_Query($args);
-
-                while ($loop->have_posts()) : $loop->the_post();
-                    the_post_thumbnail();
-                endwhile;
-                wp_reset_postdata();
-                ?>
-        <h2>photographe event </h2>
-    </div>
-
-</section>
-
-<section class="gallery container">
-    <div class="filter-options">
-        <form id="filter-form" method="GET">
-
-            <!-- Pour les catégories -->
-            <select name="category_filter">
-
-                <option value="">Catégories</option>
-
-                <?php
-            $categories = get_terms('categories-photos');
-            foreach ($categories as $category) {
-                echo '<option value="' . $category->slug . '">' . $category->name . '</option>';
-            }
             ?>
-            </select>
+        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-            <!-- Pour les formats -->
-            <select name="format_filter">
-                <option value="">Formats</option>
-                <?php
-            $formats = get_terms('format');
-            foreach ($formats as $format) {
-                echo '<option value="' . $format->slug . '">' . $format->name . '</option>';
-            }
-            ?>
-            </select>
+            <header class="entry-header">
+                <h1 class="entry-title"><?php the_title(); ?></h1>
+            </header>
 
-            <!-- Pour la date -->
-            <select name="sort_order">
-                <option value="">Date </option>
-                <option value="date-DESC">Plus récent au plus ancien</option>
-                <option value="date-ASC">Plus ancien au plus récent</option>
-            </select>
+            <div class="entry-content">
+                <?php the_content(); // Affiche le contenu de la page ?>
+            </div>
 
-        </form>
-    </div>
+        </article>
 
-    <div class="photo-gallery">
         <?php
+            // Si les commentaires sont activés ou s'il y a au moins un commentaire, charge le modèle de commentaire.
+            if (comments_open() || get_comments_number()) :
+                comments_template();
+            endif;
 
-$photo_ids = array();
-
-    $args = array(
-        'post_type' => 'photo',
-        'posts_per_page' => 12,
-        'orderby' => 'date',
-		'order'=> 'DESC',
-		'paged'=> 1,
-    );
-
-    $query = new WP_Query($args);
-
-    if ($query->have_posts()) :
-        while ($query->have_posts()) :
-            $query->the_post();
-            get_template_part('template-parts/photo_block');
-
-			  // Récupére l'ID de la photo et ajoutez-le au tableau
-        $photo_id = get_the_ID();
-        $photo_ids[] = $photo_id;
         endwhile;
-    endif;
-    wp_reset_postdata();
+        ?>
 
+    </main>
+</div>
 
-    ?>
-    </div>
-
-    <button class="load-more" id="load-more">Charger plus</button>
-</section>
-
-
-<?php get_footer(); ?>
+<?php get_footer()?>

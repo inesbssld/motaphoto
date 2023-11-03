@@ -30,9 +30,6 @@ a {
   color: inherit;
 }
 
-/*
- Improve media defaults
-*/
 img,
 picture,
 video,
@@ -41,10 +38,6 @@ svg {
   display: block;
   max-width: 100%;
 }
-
-/*
- Avoid text overflows
-*/
 
 p,
 h1,
@@ -56,9 +49,8 @@ h6 {
   overflow-wrap: break-word;
 }
 
-/****** FONTS *********/
+/************************************** FONTS ***********************************************************/
 
-/* Space mono Regular 400 Bold 700 400 italic */
 @font-face {
   font-family: "Space Mono";
   font-style: normal;
@@ -96,7 +88,6 @@ h6 {
     url("assets/fonts/Space_Mono/SpaceMono-BoldItalic.ttf") format("truetype");
 }
 
-/* poppins light 300 medium 500*/
 @font-face {
   font-family: "Poppins Medium";
   font-style: normal;
@@ -124,7 +115,7 @@ body {
   max-width: 1148px;
   margin: 0 auto;
 }
-/****** HEADER *********/
+/************************************************ HEADER ***********************************************************/
 
 header {
   box-shadow: 0px 4px 14px 10px rgba(0, 0, 0, 0.03);
@@ -175,10 +166,10 @@ header {
 .main-menu.mobile-menu {
   display: flex;
 }
-/* Styles pour le menu mobile */
+/******** menu mobile ********/
 
 body.admin-bar .mobile-menu {
-  top: 118px; /* déplace le menu de 46px vers le bas sur les écrans mobiles */
+  top: 118px;
 }
 
 .mobile-menu {
@@ -214,43 +205,17 @@ body.admin-bar .mobile-menu {
 #menu-icon {
   font-size: 27px;
 }
-/* Style pour les liens lorsqu'ils sont en état actif (clic) */
+
 .mobile-menu li a:active {
   animation-name: linkMoveInRight;
   animation-timing-function: ease-out;
   animation-duration: 300ms;
 }
 
-/* Application de l'animation de fermeture lorsque la classe 'mobile-menu-closing' est présente */
 .mobile-menu-closing {
   animation-name: moveOutRight;
   animation-timing-function: ease-out;
   animation-duration: 300ms;
-}
-
-/*keyframes fermeture du menu*/
-
-@keyframes moveOutRight {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-}
-
-/* Keyframes pour l'animation "Move in Right" des liens */
-@keyframes linkMoveInRight {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
 }
 
 /* animation ouverture menu */
@@ -265,7 +230,32 @@ body.admin-bar .mobile-menu {
   }
 }
 
-/***** hero****/
+/*animation fermeture du menu*/
+
+@keyframes moveOutRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* animation liens */
+@keyframes linkMoveInRight {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/******** hero *********/
 
 .photo-hero {
   display: flex;
@@ -297,32 +287,19 @@ body.admin-bar .mobile-menu {
 
 /************************************** section gallery ***********************************************************/
 
-/**********filtres ********/
+/********** filtres ********/
 
 .filter-options {
   display: flex;
 }
 
 select {
-  /*width: 260px;
-  height: 42px;
-  border: 1.3px solid #b8bbc2;
-  border-radius: 8px;
-  margin-bottom: 40px;
-  font-family: "Poppins";
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 18px;
-  text-transform: uppercase;
-  color: #313144;
-  letter-spacing: 1px;
-  padding-left: 15px;*/
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   background: transparent;
   border: 1px solid #ccc;
-  padding-right: 20px; /* espace pour l'icône de flèche */
+  padding-right: 20px;
   background-image: url("img/arrow_select_icon.png");
   background-position: right center;
   background-repeat: no-repeat;
@@ -353,7 +330,6 @@ select[name="sort_order"] {
 .dropdown-menu {
   width: 100%;
   text-align: left;
-  /* background-color: #e5e5e5; */
   border-bottom: none;
   padding: 13px 15px;
   font-size: 12px;
@@ -488,7 +464,7 @@ select[name="sort_order"] {
 
 @media screen and (max-width: 768px) {
   .photo-item {
-    width: 100%; /* Un élément par ligne sur mobile */
+    width: 100%;
   }
 }
 
@@ -502,7 +478,7 @@ select[name="sort_order"] {
   height: 100%;
   display: none;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.5); /* Couleur d'arrière-plan semi-transparente */
+  background: rgba(0, 0, 0, 0.5);
   transition: opacity 0.3s;
 }
 
@@ -587,7 +563,7 @@ a.fullscreen-icon {
   font-weight: 700;
 }
 
-/***** FOOTER ******/
+/********************************************** Footer ********************************************************/
 
 footer {
   width: 100%;
@@ -596,26 +572,34 @@ footer {
   position: relative;
   bottom: 0px;
   margin-top: 40px;
+  height: 40px;
 }
 
 .footer {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   text-transform: uppercase;
   align-items: center;
+  gap: 40px;
+
+  padding: 0 20px;
 }
 .footer-nav {
-  width: 100%;
+  display: flex;
+  align-items: center;
+  width: auto;
 }
 .footer-menu {
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-transform: uppercase;
   font-size: 16px;
-  width: 623px;
-  height: 40px;
+  width: auto;
+  gap: 90px;
+}
+.footer-menu li {
+  margin-right: 50px;
 }
 
 /********************************************** lightbox ********************************************************/
@@ -662,20 +646,7 @@ footer {
     opacity: 1;
   }
 }
-/*
-.close-lightbox {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  color: white;
-  font-size: 30px;
-  cursor: pointer;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 5px;
-  border: 1px solid white;
-}
-*/
+
 .lightbox__next,
 .lightbox__prev,
 .lightbox__close {
@@ -710,8 +681,8 @@ footer {
 
 .lightbox__next {
   display: flex;
-  align-items: center; /* Pour centrer verticalement le texte et la flèche */
-  justify-content: space-between; /* Pour séparer le texte et la flèche */
+  align-items: center;
+  justify-content: space-between;
   width: 80px;
   height: 15px;
   position: fixed;
@@ -735,18 +706,16 @@ footer {
 
 .lightbox__prev {
   display: flex;
-  align-items: center; /* Pour centrer verticalement le texte et la flèche */
-  justify-content: space-between; /* Pour séparer le texte et la flèche */
-  width: 80px; /* Ajustez cette valeur si nécessaire */
+  align-items: center;
+  justify-content: space-between;
+  width: 80px;
   height: 15px;
   position: fixed;
   top: 50%;
   cursor: pointer;
   left: 10%;
   right: auto;
-  transform: translateY(
-    -50%
-  ); /* Pour centrer verticalement par rapport à la position top */
+  transform: translateY(-50%);
   color: white;
 }
 
@@ -756,9 +725,9 @@ footer {
   position: absolute;
   content: "";
   display: block;
-  width: 25px; /* Mettez la largeur de votre image de flèche */
+  width: 25px;
   height: 15px;
-  left: -40%; /* Positionnez la flèche à gauche */
+  left: -40%;
 }
 
 .lightbox__close {
@@ -784,19 +753,15 @@ footer {
 }
 /*************************************** MEDIA QUERIES *****************************************************/
 
-/**** Menu ****/
-
-/* Styles pour le menu hamburger en format mobile */
-/* Lorsque la fenêtre est supérieure à 768 pixels */
 @media (min-width: 769px) {
   .main-menu {
-    display: flex !important; /* Force le menu principal à s'afficher */
+    display: flex !important;
   }
   .hamburger {
-    display: none; /* Cache l'icône hamburger */
+    display: none;
   }
   .close-icon {
-    display: none; /* Cache l'icône de fermeture (croix) */
+    display: none;
   }
 }
 
@@ -857,15 +822,40 @@ footer {
     width: 100%;
     height: 100%;
   }
+  footer {
+    width: 100%;
+    max-width: 100%;
+    border-top: 1px solid black;
+    position: relative;
+    margin-top: 40px;
+  }
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-transform: uppercase;
+    align-items: center;
+    gap: 40px;
+    padding: 0 20px;
+    height: 200px;
+  }
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+  }
   .footer-menu {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 208px;
-    justify-content: space-around;
-    padding: 40px 0;
+    height: auto;
+    gap: 45px;
   }
-
+  .footer-menu li {
+    margin: 0;
+  }
   .lightbox__prev {
     left: 16%;
     top: 83%;
@@ -880,7 +870,6 @@ footer {
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  /* Vos styles pour ce breakpoint spécifique ici */
   .header {
     justify-content: space-between;
   }
@@ -896,24 +885,6 @@ footer {
   .photo-gallery {
     flex-direction: row;
   }
-
-  /* single css*/
-  .photo-details {
-    flex-basis: 48%;
-  }
-  .photo-image {
-    flex-basis: 48%;
-  }
-  .photo-items {
-    width: 49%;
-  }
-  .text-contact-container {
-    width: 80%;
-  }
-  .navigation {
-    width: 13%;
-  }
-  /* fin single css*/
 }
 @media (min-width: 768px) and (max-width: 1440px) {
   .container {
