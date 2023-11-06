@@ -5,22 +5,20 @@ jQuery(document).ready(function ($) {
   $(".open-modal-link").click(function (e) {
     e.preventDefault();
     modalContainer.css("display", "block");
-    modalContainer.addClass("show"); // Ajout de la classe 'show'
+    modalContainer.addClass("show");
 
-    // Récupérez la référence de la photo depuis l'attribut "data-photo-ref"
     var photoReference = $(this).data("photo-ref");
 
-    // Pré-remplissez le champ "Réf-photo" avec la référence
     $('[name="your-subject"]').val(photoReference);
   });
 
   modalContainer.find(".close, #overlay").click(function () {
-    modalContainer.removeClass("show"); // Retrait de la classe 'show'
+    modalContainer.removeClass("show");
     modalContainer.css("display", "none");
   });
 });
 
-//gestion thumbnail
+//thumbnail single-page
 
 jQuery(document).ready(function ($) {
   // Montrer le conteneur de miniature au démarrage
@@ -29,22 +27,20 @@ jQuery(document).ready(function ($) {
     thumbnailContainer.show();
   }
 
-  // Lorsque vous survolez un lien de navigation
+  // au survol
   $(".nav-link").on("mouseenter", function () {
-    var thumbnailUrl = $(this).data("thumbnail"); // Récupère l'URL de la miniature
-    var postUrl = $(this).data("postlink"); // Récupère l'URL du post
+    var thumbnailUrl = $(this).data("thumbnail");
+    var postUrl = $(this).data("postlink");
 
-    // Créez un élément 'a' autour de l'image de la miniature et rendez-le cliquable
     var clickableThumbnail =
       '<a href="' +
       postUrl +
-      '">' + // Lien vers le post
+      '">' +
       '<img src="' +
       thumbnailUrl +
       '" class="thumbnail-img" alt="Miniature">' +
       "</a>";
 
-    // Définissez la miniature cliquable et affichez-la
     $("#hover-thumbnail-container").html(clickableThumbnail).show();
   });
 });
@@ -110,7 +106,7 @@ jQuery(document).ready(function ($) {
       '<div class="dropdown-toggle">' +
         '<span class="selected-text">' +
         $this.children("option").eq(0).text() +
-        "</span>" + // fermez la balise ici
+        "</span>" +
         '<span class="arrow"><img src="wp-content/themes/motaphoto/img/arrow_select_icon.png"></span></div>'
     );
 
@@ -148,7 +144,6 @@ jQuery(document).ready(function ($) {
       $styledSelect.removeClass("active");
       $this.val($(this).attr("rel"));
       $list.hide();
-      // Reflétant les changements dans le select d'origine
       $this.trigger("change");
     });
 

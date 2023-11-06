@@ -34,15 +34,10 @@ jQuery(document).ready(function ($) {
         action: "load_all_photos",
       },
       success: function (res) {
-        $(".photo-suggest").html(res.html); // Remplacez le contenu actuel par les nouvelles photos
+        $(".photo-suggest").html(res.html); // Remplace le contenu actuel par les nouvelles photos
 
-        // Après avoir chargé les nouvelles images, réinitialisez les gestionnaires d'événements de la lightbox
-        //initLightbox();
-
-        // test pour cacher le bouton
-        // Vérifiez si le nombre de photos chargées est égal au nombre total de photos
         if (res.allLoaded) {
-          $("#load-more-single").hide(); // Masquez le bouton si toutes les photos sont chargées
+          $("#load-more-single").hide(); // Masque le bouton si toutes les photos sont chargées
         }
       },
     });

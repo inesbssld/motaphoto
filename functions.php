@@ -1,12 +1,12 @@
 <?php
 
-// Ajouter la prise en charge des images mises en avant
+// Ajoute la prise en charge des images mises en avant
 add_theme_support( 'post-thumbnails' );
 
-// Ajouter automatiquement le titre du site dans l'en-tête du site
+// Ajoute automatiquement le titre du site dans l'en-tête du site
 add_theme_support( 'title-tag' );
 
-//ajouter le logo
+//ajoute le logo
 add_theme_support('custom-logo');
 
 // Enqueue le fichier style.css du thème
@@ -22,7 +22,7 @@ function enqueue_custom_scripts() {
     // Enregistre le script jQuery
     wp_enqueue_script('jquery');
 
-    // Enregistrez votre script personnalisé
+    // Enregistre le script.js
     wp_enqueue_script(
         'custom-script',
         get_template_directory_uri() . '/assets/js/script.js',array('jquery'), '1.0', true // Chargez le script dans le pied de page (true) ou l'en-tête (false)
@@ -120,22 +120,15 @@ function load_all_photos() {
     } else {
         $response = '';
     }
-// ajout test
 
-
-
- // Vérifiez si toutes les photos sont chargées en comparant avec le nombre total de photos
+ // Vérifie si toutes les photos sont chargées en comparant avec le nombre total de photos
     $total_photos = wp_count_posts('photo')->publish;
     $photos_loaded = $query->found_posts;
     $all_loaded = ($photos_loaded >= $total_photos);
 
-
-//fin ajout test
-
-
     $result = [
         'html' => $output,
-         'allLoaded' => $all_loaded, // Indiquez si toutes les photos sont chargées test
+         'allLoaded' => $all_loaded,
 
     ];
 
@@ -168,7 +161,7 @@ add_action('wp_enqueue_scripts', 'add_ajax_library');
 
 
 
-// Enqueue JS et passer des paramètres à votre script JS
+// Enqueue JS et passe des paramètres au script JS
 function custom_enqueue_scripts() {
     wp_enqueue_script('ajax-filter', get_template_directory_uri() . '/assets/js/filter.js', array('jquery'), null, true);
     wp_localize_script('ajax-filter', 'afp_vars', array(

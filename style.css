@@ -450,16 +450,15 @@ select[name="sort_order"] {
 
 .photo-items {
   position: relative;
-  width: calc(50% - 10px); /* Calcule la largeur en fonction de l'espacement */
-  margin-bottom: 2vh; /* Espacement de 2% en bas pour s'adapter à la hauteur de l'écran */
-  text-align: center; /* Centre le contenu horizontalement */
+  width: calc(50% - 10px);
+  margin-bottom: 2vh;
+  text-align: center;
 }
 
-/* Styles pour les images de la galerie */
 .photo-items img {
-  width: 564px; /* Largeur fixe pour les images de 564px */
-  height: 495px; /* Hauteur fixe pour les images de 495px */
-  object-fit: cover; /* Utilisez object-fit pour ajuster la taille de l'image */
+  width: 564px;
+  height: 495px;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 768px) {

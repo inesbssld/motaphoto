@@ -18,7 +18,6 @@ jQuery(document).ready(function ($) {
     currentIndex = index;
   }
 
-  // Utilisation de la délégation d'événements pour les éléments ajoutés dynamiquement
   $("body").on("click", ".fullscreen-icon", function (e) {
     e.preventDefault();
 

@@ -3,7 +3,6 @@ body.admin-bar .modal-container {
   top: 32px;
 }
 
-/* Styles pour le conteneur de la modal */
 .modal-container {
   display: none;
   position: fixed;
@@ -11,15 +10,12 @@ body.admin-bar .modal-container {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 998; /* en arrière-plan par rapport à la modal */
-
-  /* style spéciale poiur l'animation*/
+  z-index: 998;
   opacity: 0;
-  animation-duration: 300ms; /* durée de l'animation */
-  animation-fill-mode: forwards; /* ajoutez cette ligne pour que les animations gardent leur dernier état */
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
 }
 
-/* Styles pour la couche semi-transparente en arrière-plan */
 .overlay {
   position: absolute;
   top: 0;
@@ -29,7 +25,6 @@ body.admin-bar .modal-container {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Styles pour la modal */
 .modal {
   width: 597px;
   height: 94vh;
@@ -40,8 +35,7 @@ body.admin-bar .modal-container {
   transform: translateX(-50%);
   border: 5px solid black;
   background-color: #ffffff;
-
-  z-index: 999; /* devant la couche semi-transparente */
+  z-index: 999;
 }
 
 .modal-header {
@@ -50,7 +44,7 @@ body.admin-bar .modal-container {
   background-size: cover;
   height: 106px;
 }
-/* Styles pour le contenu de la modal */
+
 .modal-content {
   position: relative;
   margin: 0 auto;
@@ -62,7 +56,6 @@ body.admin-bar .modal-container {
 /* Classe ajoutée via JavaScript pour montrer la modal */
 .modal-container.show {
   display: block;
-
   animation: fadeInModal 300ms forwards;
 }
 

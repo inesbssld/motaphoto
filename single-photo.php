@@ -14,10 +14,7 @@
         if ($photo_query->have_posts()) :
 
  while ($photo_query->have_posts()) : $photo_query->the_post();
-//essai nouvelle ligne
 
-
-        // Si c'est le premier post de la boucle, récupérez la miniature.
         if ( $photo_query->current_post == 0 ) {
             $first_thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
         }
@@ -59,7 +56,7 @@ $next_photo = get_next_post();
                 <!-- Conteneur pour les miniatures -->
                 <div id="hover-thumbnail-container">
                     <?php
-    // Récupérer le post précédent
+    // Récupére le post précédent
     $previous_photo = get_previous_post();
 
     // Si l'article précédent existe, afficher sa miniature
@@ -116,10 +113,10 @@ $next_photo = get_next_post();
 
             <div class="photo-suggest photo-gallery">
                 <?php
-    $categories = get_the_terms(get_the_ID(), 'categories-photos'); // Obtenez les catégories du post actuel
+    $categories = get_the_terms(get_the_ID(), 'categories-photos'); // catégories du post actuel
 
     if ($categories) {
-        $category_slugs = wp_list_pluck($categories, 'slug'); // Récupérez les slugs des catégories
+        $category_slugs = wp_list_pluck($categories, 'slug'); // slugs des catégories
 
         $args = array(
             'post_type' => 'photo',

@@ -27,13 +27,13 @@
     ?>
             </div>
 
-            <!-- on ajoute notre menu dans le header-->
+            <!-- ajout du menu dans le header-->
             <nav class="header-nav">
                 <?php
     wp_nav_menu(array(
-        'theme_location' => 'main-menu', // Emplacement du menu à afficher
-        'container' => 'ul', // Pour générer une ul et non une div comme container
-       'menu_class' => 'main-menu', // Classe CSS pour la liste du menu
+        'theme_location' => 'main-menu',
+        'container' => 'ul',
+       'menu_class' => 'main-menu',
     ));
     ?>
 
